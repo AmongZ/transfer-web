@@ -1,0 +1,38 @@
+<!--
+ * @Description: 
+ * @Author: zhongweibin
+ * @Date: 2021-06-30 19:23:25
+ * @LastEditTime: 2021-11-03 10:13:39
+ * @LastEditors: zhongweibin
+ * @Reference: 
+-->
+<template>
+  <div id="app">
+    <doorway></doorway>
+    <div>
+      <router-view></router-view>
+    </div>
+  </div>
+</template>
+
+<script>
+  import doorway from './components/doorway.vue';
+
+  export default {
+    name: 'App',
+    components: {
+      doorway,
+    },
+  };
+</script>
+
+<style>
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 20px;
+  }
+</style>
