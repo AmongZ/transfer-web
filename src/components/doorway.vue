@@ -136,7 +136,7 @@ export default {
       },
       rules: {
         platformName: [
-          {required: true, message: '请输入活动名称', trigger: 'blur'},
+          {required: true, message: '请输入平台名称', trigger: 'blur'},
           {
             min: 1,
             max: 50,
