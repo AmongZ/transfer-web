@@ -8,7 +8,6 @@
 -->
 <template>
   <div id="app">
-    <doorway></doorway>
     <div>
       <router-view></router-view>
     </div>
@@ -16,13 +15,8 @@
 </template>
 
 <script>
-  import doorway from './components/doorway.vue';
-
   export default {
     name: 'App',
-    components: {
-      doorway,
-    },
   };
 </script>
 
