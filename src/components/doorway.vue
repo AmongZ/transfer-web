@@ -14,8 +14,10 @@
           </el-select>
         </el-col>
         <el-col :span="6">
-          <el-button class="button-el" type="primary" icon="el-icon-search" @click="platformList()">搜索</el-button>
-          <el-button class="button-el" style="margin-left: 30px" type="primary" v-if="!edit" @click="addPlatform()">新增
+          <el-button plain class="button-el" type="primary" icon="el-icon-search" @click="platformList()">搜索
+          </el-button>
+          <el-button plain class="button-el" style="margin-left: 30px" type="primary" v-if="!edit"
+                     @click="addPlatform()">新增
           </el-button>
         </el-col>
       </el-row>
@@ -33,6 +35,9 @@
             <el-option v-for="item in classifyList" :key="item.id" :label="item.classifyName"
                        :value="item.id"></el-option>
           </el-select>
+        </el-form-item>
+        <el-form-item label="开发环境地址" prop="testEnv">
+          <el-input v-model="ruleForm.devEnv"></el-input>
         </el-form-item>
         <el-form-item label="测试环境地址" prop="testEnv">
           <el-input v-model="ruleForm.testEnv"></el-input>
@@ -58,8 +63,8 @@
     <el-card>
       <div>
         <el-row :gutter="8">
-          <el-col :span="4" style="height: 165px" v-for="(item, index) in platformData" :key="index">
-            <el-card style="width: 100%">
+          <el-col :span="4" style="height: 118px" v-for="(item, index) in platformData" :key="index">
+            <el-card style="width: 100%; height: 110px">
               <div slot="header" class="clearfix">
                 <div v-if="edit" style="float: right">
                   <el-button type="text" size="mini" @click="editPlatform(item)">修改</el-button>
@@ -84,6 +89,10 @@
               </div>
 
               <div class="text item">
+                <el-link type="primary" v-bind:href="item.devEnv" target="_blank" v-if="isNotEmpty(item.devEnv)"
+                         :underline="false">
+                  <span class="link-text">开发</span>
+                </el-link>
                 <el-link type="primary" v-bind:href="item.testEnv" target="_blank" v-if="isNotEmpty(item.testEnv)"
                          :underline="false">
                   <span class="link-text">测试</span>
@@ -132,6 +141,7 @@ export default {
         classifyName: '',
         preEnv: '',
         testEnv: '',
+        devEnv: '',
         prodEnv: '',
       },
       rules: {
@@ -216,6 +226,7 @@ export default {
         preEnv: this.ruleForm.preEnv,
         prodEnv: this.ruleForm.prodEnv,
         testEnv: this.ruleForm.testEnv,
+        devEnv: this.ruleForm.devEnv,
         favicon: this.ruleForm.favicon,
       };
       this.$axios
@@ -331,11 +342,17 @@ export default {
   margin-bottom: 0;
 }
 
-/*.el-row {*/
-/*  margin-bottom: 1px;*/
-/*  display: flex;*/
-/*  flex-wrap: wrap;*/
-/*}*/
+.el-card__header {
+  padding: 10px 10px;
+}
+
+.el-card__body {
+  padding: 5px 10px;
+}
+
+.item {
+  line-height: 35px;
+}
 
 .el-row .el-card {
   min-width: 100%;
@@ -392,11 +409,6 @@ export default {
   padding-right: 5px;
 }
 
-.item {
-  margin-bottom: 18px;
-  line-height: 30px;
-}
-
 .moduletitle {
   width: 100%;
   color: #b4b4b4;
@@ -404,6 +416,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-top: 3px;
 }
 
 .imgs {
