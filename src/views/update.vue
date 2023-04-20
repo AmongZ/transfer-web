@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import doorway from '@/components/doorway';
+import doorway from '@/views/index.vue';
 
 export default {
   components: {doorway},
